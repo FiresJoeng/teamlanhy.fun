@@ -1,172 +1,247 @@
-	/*
-	Original Files "eventally.html" and "main.js" by HTML5 UP(html5up.net | @ajlkn)
-	Modified and recoded by Team LanHy(teamlanhy.fun | @Fires)
-	Codes: GitHub.com/FiresJoeng
-	All is under the CCA 3.0 license.
-	*/
+/*
+Original Files "eventally.html" and "main.js" by HTML5 UP(html5up.net | @ajlkn)
+Modified and recoded by Team LanHy(teamlanhy.fun | @Fires)
+Codes: GitHub.com/FiresJoeng
+All is under the CCA 3.0 license.
+ */
 
-	(function() {
+(function () {
 
-		"use strict";
+    "use strict";
 
-		var	$body = document.querySelector('body');
+    var $body = document.querySelector('body');
 
-		// Methods/polyfills.
+    // Methods/polyfills.
 
-			// classList | (c) @remy | github.com/remy/polyfills | rem.mit-license.org
-				!function(){function t(t){this.el=t;for(var n=t.className.replace(/^\s+|\s+$/g,"").split(/\s+/),i=0;i<n.length;i++)e.call(this,n[i])}function n(t,n,i){Object.defineProperty?Object.defineProperty(t,n,{get:i}):t.__defineGetter__(n,i)}if(!("undefined"==typeof window.Element||"classList"in document.documentElement)){var i=Array.prototype,e=i.push,s=i.splice,o=i.join;t.prototype={add:function(t){this.contains(t)||(e.call(this,t),this.el.className=this.toString())},contains:function(t){return-1!=this.el.className.indexOf(t)},item:function(t){return this[t]||null},remove:function(t){if(this.contains(t)){for(var n=0;n<this.length&&this[n]!=t;n++);s.call(this,n,1),this.el.className=this.toString()}},toString:function(){return o.call(this," ")},toggle:function(t){return this.contains(t)?this.remove(t):this.add(t),this.contains(t)}},window.DOMTokenList=t,n(Element.prototype,"classList",function(){return new t(this)})}}();
+    // classList | (c) @remy | github.com/remy/polyfills | rem.mit-license.org
+    !function () {
+        function t(t) {
+            this.el = t;
+            for (var n = t.className.replace(/^\s+|\s+$/g, "").split(/\s+/), i = 0; i < n.length; i++)
+                e.call(this, n[i])
+        }
+        function n(t, n, i) {
+            Object.defineProperty ? Object.defineProperty(t, n, {
+                get: i
+            }) : t.__defineGetter__(n, i)
+        }
+        if (!("undefined" == typeof window.Element || "classList" in document.documentElement)) {
+            var i = Array.prototype,
+            e = i.push,
+            s = i.splice,
+            o = i.join;
+            t.prototype = {
+                add: function (t) {
+                    this.contains(t) || (e.call(this, t), this.el.className = this.toString())
+                },
+                contains: function (t) {
+                    return -1 != this.el.className.indexOf(t)
+                },
+                item: function (t) {
+                    return this[t] || null
+                },
+                remove: function (t) {
+                    if (this.contains(t)) {
+                        for (var n = 0; n < this.length && this[n] != t; n++);
+                        s.call(this, n, 1),
+                        this.el.className = this.toString()
+                    }
+                },
+                toString: function () {
+                    return o.call(this, " ")
+                },
+                toggle: function (t) {
+                    return this.contains(t) ? this.remove(t) : this.add(t),
+                    this.contains(t)
+                }
+            },
+            window.DOMTokenList = t,
+            n(Element.prototype, "classList", function () {
+                return new t(this)
+            })
+        }
+    }
+    ();
 
-			// canUse
-				window.canUse=function(p){if(!window._canUse)window._canUse=document.createElement("div");var e=window._canUse.style,up=p.charAt(0).toUpperCase()+p.slice(1);return p in e||"Moz"+up in e||"Webkit"+up in e||"O"+up in e||"ms"+up in e};
+    // canUse
+    window.canUse = function (p) {
+        if (!window._canUse)
+            window._canUse = document.createElement("div");
+        var e = window._canUse.style,
+        up = p.charAt(0).toUpperCase() + p.slice(1);
+        return p in e || "Moz" + up in e || "Webkit" + up in e || "O" + up in e || "ms" + up in e
+    };
 
-			// window.addEventListener
-				(function(){if("addEventListener"in window)return;window.addEventListener=function(type,f){window.attachEvent("on"+type,f)}})();
+    // window.addEventListener
+    (function () {
+        if ("addEventListener" in window)
+            return;
+        window.addEventListener = function (type, f) {
+            window.attachEvent("on" + type, f)
+        }
+    })();
 
-		// Play initial animations on page load.
-			window.addEventListener('load', function() {
-				window.setTimeout(function() {
-					$body.classList.remove('is-preload');
-				}, 100);
-			});
+    // 在页面加载时播放初始动画
+    window.addEventListener('load', function () {
+        window.setTimeout(function () {
+            $body.classList.remove('is-preload');
+        }, 100);
+    });
 
-		// Slideshow Background.
-			(function() {
+    // 背景图设置
+    (function () {
 
-				// Settings.
-					var settings = {
+        var settings = {
 
-						// Images (in the format of 'url': 'alignment').
-							images: {
-								'assets/images/Horizon.jpg': 'center',
-								'assets/images/Beach.jpg': 'center',
-								'assets/images/Cosmos.jpg': 'center'
-							},
+            // 背景图文件 (遵循 '路径': '对齐方式')
+            images: {
+                'assets/images/Horizon.jpg': 'center',
+                'assets/images/Beach.jpg': 'center',
+                'assets/images/Cosmos.jpg': 'center'
+            },
 
-						// Delay.
-							delay: 8000
+            // 背景图展示延迟
+            delay: 8000
 
-					};
+        };
 
-				// Vars.
-					var	pos = 0, lastPos = 0,
-						$wrapper, $bgs = [], $bg,
-						k, v;
+        // 声明
+        var pos = 0,
+        lastPos = 0,
+        $wrapper,
+        $bgs = [],
+        $bg,
+        k,
+        v;
 
-				// Create BG wrapper, BGs.
-					$wrapper = document.createElement('div');
-						$wrapper.id = 'bg';
-						$body.appendChild($wrapper);
+        // $wrapper 与 bgs
+        $wrapper = document.createElement('div');
+        $wrapper.id = 'bg';
+        $body.appendChild($wrapper);
 
-					for (k in settings.images) {
+        for (k in settings.images) {
 
-						// Create BG.
-							$bg = document.createElement('div');
-								$bg.style.backgroundImage = 'url("' + k + '")';
-								$bg.style.backgroundPosition = settings.images[k];
-								$wrapper.appendChild($bg);
+            // $bg
+            $bg = document.createElement('div');
+            $bg.style.backgroundImage = 'url("' + k + '")';
+            $bg.style.backgroundPosition = settings.images[k];
+            $wrapper.appendChild($bg);
 
-						// Add it to array.
-							$bgs.push($bg);
+            $bgs.push($bg);
 
-					}
+        }
 
-				// Main loop.
-					$bgs[pos].classList.add('visible');
-					$bgs[pos].classList.add('top');
+        // 主循环
+        $bgs[pos].classList.add('visible');
+        $bgs[pos].classList.add('top');
 
-					// Bail if we only have a single BG or the client doesn't support transitions.
-						if ($bgs.length == 1
-						||	!canUse('transition'))
-							return;
+        // 判断bgs是否为1, 如果是则不执行后续代码
+        if ($bgs.length == 1
+             || !canUse('transition'))
+            return;
 
-					window.setInterval(function() {
+        window.setInterval(function () {
 
-						lastPos = pos;
-						pos++;
+            lastPos = pos;
+            pos++;
 
-						// Wrap to beginning if necessary.
-							if (pos >= $bgs.length)
-								pos = 0;
+            // 必要情况下回到最初的状态
+            if (pos >= $bgs.length)
+                pos = 0;
 
-						// Swap top images.
-							$bgs[lastPos].classList.remove('top');
-							$bgs[pos].classList.add('visible');
-							$bgs[pos].classList.add('top');
+            // 交换顶部的图片
+            $bgs[lastPos].classList.remove('top');
+            $bgs[pos].classList.add('visible');
+            $bgs[pos].classList.add('top');
 
-						// Hide last image after a short delay.
-							window.setTimeout(function() {
-								$bgs[lastPos].classList.remove('visible');
-							}, settings.delay / 2);
+            // 一段时间后把 $bgs[lastPos] 这个元素的 'visible' 类去掉
+            window.setTimeout(function () {
+                $bgs[lastPos].classList.remove('visible');
+            }, settings.delay / 2);
 
-					}, settings.delay);
+        }, settings.delay);
 
-			})();
+    })();
 
-		// Signup Form.
-			(function() {
+    // 表单
+    (function () {
 
-				// Vars.
-					var $form = document.querySelectorAll('#signup-form')[0],
-						$submit = document.querySelectorAll('#signup-form input[type="submit"]')[0],
-						$message;
+        var $form = document.querySelectorAll('#signup-form')[0],
+        $submit = document.querySelectorAll('#signup-form input[type="submit"]')[0],
+        $message;
 
-				// Bail if addEventListener isn't supported.
-					if (!('addEventListener' in $form))
-						return;
+        if (!('addEventListener' in $form))
+            return;
 
-				// Message.
-					$message = document.createElement('span');
-						$message.classList.add('message');
-						$form.appendChild($message);
+        // $Message
+        $message = document.createElement('span');
+        $message.classList.add('message');
+        $form.appendChild($message);
 
-					$message._show = function(type, text) {
+        $message._show = function (type, text) {
+            $message.innerHTML = text;
+            $message.classList.add(type);
+            $message.classList.add('visible');
 
-						$message.innerHTML = text;
-						$message.classList.add(type);
-						$message.classList.add('visible');
+            window.setTimeout(function () {
+                $message._hide();
+            }, 3000);
+        };
 
-						window.setTimeout(function() {
-							$message._hide();
-						}, 3000);
+        $message._hide = function () {
+            $message.classList.remove('visible');
+        };
 
-					};
+        // fetchJSON 函数
+        async function fetchJSON(url) {
+            const response = await fetch(url);
+            return response.json();
+        }
 
-					$message._hide = function() {
-						$message.classList.remove('visible');
-					};
+        // 事件
+        $form.addEventListener('submit', async function (event) {
+            event.stopPropagation();
+            event.preventDefault();
 
-				// Events.
-				// Note: If you're *not* using AJAX, get rid of this event listener.
-					$form.addEventListener('submit', function(event) {
+            // 隐藏$message
+            $message._hide();
 
-						event.stopPropagation();
-						event.preventDefault();
+            // 禁用$submit
+            $submit.disabled = true;
 
-						// Hide message.
-							$message._hide();
+            // 获取输入的数据
+            var submittedContent = $form.querySelector('input[name="code"]').value;
 
-						// Disable submit.
-							$submit.disabled = true;
+            try {
+                const passcodes = await fetchJSON('SHA256 ENCRYPTED'); 
+                let isMatch = false;
+                let username = '';
 
-						// Process form.
-						// Note: Doesn't actually do anything yet (other than report back with a "thank you"),
-						// but there's enough here to piece together a working AJAX submission call that does.
-							window.setTimeout(function() {
+                for (let [key, value] of Object.entries(passcodes)) {
+                    if (submittedContent === value) {
+                        isMatch = true;
+                        username = key;
+                        break;
+                    }
+                }
 
-								// Reset form.
-									$form.reset();
+                // 判断
+                if (isMatch) {
+                    $message._show('succeed', '欢迎回来, ' + username + '!');
+                } else {
+                    $message._show('failure', '校验码错误！');
+                }
+            } catch (error) {
+                $message._show('failure', '发生了一个问题，请联系网站管理员！');
+            }
 
-								// Enable submit.
-									$submit.disabled = false;
+            // 启用$submit
+            $submit.disabled = false;
 
-								// Show message.
-									$message._show('failure', '校验码错误！');
-									//$message._show('failure', 'Something went wrong. Please try again.');
+            // 重置表单
+            $form.reset();
+        });
 
-							}, 750);
+    })();
 
-					});
-
-			})();
-
-	})();
+})();
