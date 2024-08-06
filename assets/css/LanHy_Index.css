@@ -1,11 +1,13 @@
-@import url(fontawesome-all.min.css);
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
 /*
 	Original Files "eventally.html" and "main.css" by HTML5 UP(html5up.net | @ajlkn)
 	Modified and recoded by Team LanHy(teamlanhy.fun | @Fires)
 	Codes: GitHub.com/FiresJoeng
 	All is under the CCA 3.0 license.
 */
+
+@import url(fontawesome-all.min.css);
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
+
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
