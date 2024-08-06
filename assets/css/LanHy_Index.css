@@ -481,14 +481,14 @@ form {
       -ms-transform: scale(1);
       transform: scale(1);
       opacity: 1; }
-    form .message.success {
-      color: rgb(0, 119, 237); }
-      form .message.success:before {
-        content: '\f00c'; }
     form .message.failure {
       color: #ff2361; }
       form .message.failure:before {
         content: '\f119'; }
+	form .message.success {
+      color: #1cb495; }
+      form .message.success:before {
+        content: '\f00c'; }
 
 label {
   color: #fff;
