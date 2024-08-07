@@ -1,0 +1,90 @@
+@import url(main.css);
+/* Background */
+.wall {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: row;  /* Change to row for horizontal layout */
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(180deg, #e7eaf2, #d4d0c7);
+    margin: 0;
+    padding: 0;
+}
+
+/* App Container */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px; /* Add some margin to separate apps */
+}
+
+/* App */
+.appicon {
+    font-size: 128px;
+    color: white;
+    text-align: center;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+    width: 400px;
+    height: 256px;
+    margin-top: 50px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0 32px 50px 0 rgba(0,0,0,.3);
+    cursor: pointer;
+    transition: transform .3s;
+    transition: transform .3s,-webkit-transform .3s
+}
+
+.appicon:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1)
+}
+
+.appname {
+    font-size: 32px;
+    color: black;
+    text-align: center;
+    margin-top: 16px;
+    transition: transform .3s;
+    transition: transform .3s,-webkit-transform .3s
+}
+
+/* Logo */
+.logo {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-transition: -webkit-transform .3s;
+    transition: transform .3s;
+    transition: transform .3s,-webkit-transform .3s
+}
+
+.logo:hover {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2)
+}
