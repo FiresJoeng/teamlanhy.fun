@@ -1,0 +1,15 @@
+@import url(app.css);
+.wall {
+    flex-direction: column;
+}
+
+table {
+    border-collapse: collapse;
+    transform: scale(3);
+}
+
+th, td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px;
+}
